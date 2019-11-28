@@ -9,27 +9,35 @@ def directors_totals(nds)
   
   # The Hash result will be full of things like "Jean-Pierre Jeunet" => "222312123123"
   
-  pp nds
-  
-end
-=begin
+  result = { }
+  dir_idx = 0
 
-  result = {}
-  idx = 0
+  while dir_idx < nds.length
 
-  while idx < nds.length do
-   
-    director_name = nds[idx][:name]
-    movies = nds[idx][:movies]
-    inner_idx = 0
-    
-    while inner_idx < movies.length do
-      ww_gross = movies[inner_idx][:worldwide_gross]
-      
-    inner_idx += 1
+    movie_idx = 0
+
+    worldwide_gross_dir = 0
+
+
+    while movie_idx < nds[dir_idx][:movies][movie_idx].count
+
+      worldwide_gross_dir += nds[dir_idx][:movies][movie_idx][:worldwide_gross]
+
+      movie_idx += 1
+
     end
-  idx += 1
+
+    dir_name = nds[dir_idx][:name]
+    result[dir_name] = worldwide_gross_dir
+
+
+    dir_idx += 1
+
   end
+
+  return result
+end
+  
 end
 
 
@@ -43,11 +51,3 @@ end
 
 
 
-=begin
-  dd = directors_database
-  result = {}
-  idx = 0
-  
-  while idx < dd  do
-  end
-=end
